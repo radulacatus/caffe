@@ -9,7 +9,7 @@ echo ProtoCompile.cmd : Create proto temp directory "%PROTO_TEMP_DIR%"
 mkdir "%PROTO_TEMP_DIR%"
 
 echo ProtoCompile.cmd : Generating "%PROTO_TEMP_DIR%\caffe.pb.h" and "%PROTO_TEMP_DIR%\caffe.pb.cc"
-"%PROTO_DIR%protoc" --proto_path="%SRC_PROTO_DIR%" --cpp_out="%PROTO_TEMP_DIR%" "%SRC_PROTO_DIR%\caffe.proto"
+"%PROTO_DIR%\protoc" --proto_path="%SRC_PROTO_DIR%" --cpp_out="%PROTO_TEMP_DIR%" "%SRC_PROTO_DIR%\caffe.proto"
 
 echo ProtoCompile.cmd : Create proto include directory
 mkdir "%INCLUDE_PROTO_DIR%"

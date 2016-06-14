@@ -7,6 +7,7 @@
 
 set OUTPUT_DIR=%~1%
 set BUILD_CONFIG=%2%
+set DEPENDENCIES_DIR=%3%
 
 if %BUILD_CONFIG% == Release (
     set originalDllName=gflags.dll
@@ -19,6 +20,8 @@ if %BUILD_CONFIG% == Release (
 if exist "%OUTPUT_DIR%\%newDllName%" (
     echo FixGFlagsNaming.cmd : "%newDllName%" already exists
 ) else (
+	echo FixGFlagsNaming.cmd : copy "%DEPENDENCIES_DIR%\%originalDllName%" to "%OUTPUT_DIR%"
+	xcopy /y /d  "%DEPENDENCIES_DIR%\%originalDllName%" "%OUTPUT_DIR%"
     echo FixGFlagsNaming.cmd : mklink /H "%OUTPUT_DIR%\%newDllName%" "%OUTPUT_DIR%\%originalDllName%"
     mklink /H "%OUTPUT_DIR%\%newDllName%" "%OUTPUT_DIR%\%originalDllName%"
 )
