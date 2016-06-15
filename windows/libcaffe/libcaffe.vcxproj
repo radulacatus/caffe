@@ -60,6 +60,7 @@
     <ClCompile>
       <DisableSpecificWarnings>4661;4005;4812;4715;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(PythonDir)\include;$(DependenciesDir)\include\lmdb;$(DependenciesDir)\include\hdf5;$(BOOST_1_56_0);$(ProjectDir)\..\..\src\;$(DependenciesDir)\include\openblas;$(DependenciesDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Lib>
       <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
@@ -83,7 +84,7 @@
     </CudaCompile>
     <ClCompile>
       <DisableSpecificWarnings>4661;4005;4812;4715;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(PythonDir)\include;$(DependenciesDir)\include\lmdb;$(DependenciesDir)\include\hdf5;$(BOOST_1_56_0);$(ProjectDir)\..\..\src\;$(DependenciesDir)\include\openblas;$(DependenciesDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Lib>
       <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
