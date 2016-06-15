@@ -1,39 +1,17 @@
 # Windows Caffe
 
-**This is an experimental, Microsoft-led branch by Pavle Josipovic (@pavlejosipovic). It is a work-in-progress.**
-
-This branch of Caffe ports the framework to Windows.
-
-[![Travis Build Status](https://api.travis-ci.org/BVLC/caffe.svg?branch=windows)](https://travis-ci.org/BVLC/caffe) Travis (Linux build)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/128eg95svel2a2xs?svg=true)]
-(https://ci.appveyor.com/project/pavlejosipovic/caffe-v45qi) AppVeyor (Windows build)
+This branch of Caffe will be used for my personal experiments. For the time being it's configured for CPU_ONLY build using local third party dependencies (instead of nuget packages). See setup details below.
 
 ## Windows Setup
-**Requirements**: Visual Studio 2013
 
-### Pre-Build Steps
-Copy `.\windows\CommonSettings.props.example` to `.\windows\CommonSettings.props`
-
-By defaults Windows build requires `CUDA` and `cuDNN` libraries.
-Both can be disabled by adjusting build variables in `.\windows\CommonSettings.props`.
-Python support is disabled by default, but can be enabled via `.\windows\CommonSettings.props` as well.
-3rd party dependencies required by Caffe are automatically resolved via NuGet.
-
-### CUDA
-Download `CUDA Toolkit 7.5` [from nVidia website](https://developer.nvidia.com/cuda-toolkit).
-If you don't have CUDA installed, you can experiment with CPU_ONLY build.
-In `.\windows\CommonSettings.props` set `CpuOnlyBuild` to `true` and set `UseCuDNN` to `false`.
-
-### cuDNN
-Download `cuDNN v3` or `cuDNN v4` [from nVidia website](https://developer.nvidia.com/cudnn).
-Unpack downloaded zip to %CUDA_PATH% (environment variable set by CUDA installer).
-Alternatively, you can unpack zip to any location and set `CuDnnPath` to point to this location in `.\windows\CommonSettings.props`.
-`CuDnnPath` defined in `.\windows\CommonSettings.props`.
-Also, you can disable cuDNN by setting `UseCuDNN` to `false` in the property file.
+1. Download repository.
+2. Download 3rd party dependencies from [here](https://drive.google.com/open?id=0By--rxQnz9HfRVBxZFh6ZXNvc0U)
+3. Unzip the 3rdparty.zip archive and in `windows/CommonSettings.props` replace the `DependenciesDir` property with the path to your 3rdparty folder.
+4. Install Opencv 2.4.9 (I use 2.4.13)
+5. Install [Boost 1.56](http://sourceforge.net/projects/boost/files/boost-binaries/1.56.0/boost_1_56_0-msvc-12.0-64.exe/download)
+6. Open windows\Caffe.sln and build the solution
 
 ### Python
-To build Caffe Python wrapper set `PythonSupport` to `true` in `.\windows\CommonSettings.props`.
 Download Miniconda 2.7 64-bit Windows installer [from Miniconda website] (http://conda.pydata.org/miniconda.html).
 Install for all users and add Python to PATH (through installer).
 
@@ -44,21 +22,19 @@ conda install --yes numpy scipy matplotlib scikit-image pip
 pip install protobuf
 ```
 
-#### Remark
+#### Remarks
 After you have built solution with Python support, in order to use it you have to either:  
 * set `PythonPath` environment variable to point to `<caffe_root>\Build\x64\Release\pycaffe`, or
 * copy folder `<caffe_root>\Build\x64\Release\pycaffe\caffe` under `<python_root>\lib\site-packages`.
 
-### Matlab
-To build Caffe Matlab wrapper set `MatlabSupport` to `true` and `MatlabDir` to the root of your Matlab installation in `.\windows\CommonSettings.props`.
+Also, you should add your `3rdparty\bin` folder to the PATH environment variable.
 
-#### Remark
-After you have built solution with Matlab support, in order to use it you have to:
-* add the generated `matcaffe` folder to Matlab search path, and
-* add `<caffe_root>\Build\x64\Release` to your system path.
+## Other resources
+The reads that proved useful for installing & configuring caffe on windows:
 
-### Build
-Now, you should be able to build `.\windows\Caffe.sln`
+1. [initialneil's repo](https://github.com/initialneil/caffe/tree/windows) his [step by step guide](https://initialneil.wordpress.com/2015/01/11/build-caffe-in-windows-with-visual-studio-2013-cuda-6-5-opencv-2-4-9/)
+2. [happynear's repo](https://github.com/happynear/caffe-windows)
+3. if you only need the binary files i would recommend getting them from [this repo](https://github.com/drakh/caffe-win-python-anaconda)
 
 ## Further Details
 
